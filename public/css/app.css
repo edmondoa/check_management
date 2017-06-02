@@ -1,0 +1,36 @@
+
+.disabled-all{}
+table.invoice-table thead>tr>th {
+   background-color: #777!important;
+   color: #fff;
+}
+/*
+ section.details{font-family: ",Helvetica Neue",Helvetica,Arial,sans-serif !important;}
+*/
+section.details label{padding-left: 0px !important;}
+
+section.sidebar li >a.create{display:none;z-index: 9999;font-size: 18px}
+section.sidebar li:hover>a {display: block; }
+.content-header>.breadcrumb {
+    float: left;
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    padding: 7px 5px;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    border-radius: 2px;
+  }
+
+  section.content{margin-top: 20px;}
+
+  .form-control{
+    background-color: #f9f9f9!important;
+  }
+
+  .ml-5{margin-left: 5px !important}
+div.search{ width:30% !important; min-height: 1px !important;
+    padding-right: 15px !important;
+    padding-left: 15px !important;}
