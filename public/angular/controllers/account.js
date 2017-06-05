@@ -1,9 +1,11 @@
 (function(app) {
-    'use strict';
 
-app.controller('pGroupCtrl', ['groupService' ,'$scope', function (service ,$scope) {
+  'use strict';
+
+  app.controller('accountCtrl', ['accountService','$scope', function (service,$scope) {
+
       var ctrl = this;
-     var group = {};
+      $scope.branch = {};
       var bsTable     = jQuery('.bsTable');
 
       bsTable.bootstrapTable({
@@ -27,23 +29,26 @@ app.controller('pGroupCtrl', ['groupService' ,'$scope', function (service ,$scop
       this.filterRecord = function(model)
       {
         var searchStr = (typeof(model['searchStr'])=='undefined') ? '': model['searchStr'];
-        var url = '/product-group/ng-pgroup-list?searchStr='+searchStr;
+        var url = '/accounts/ng-account-list?searchStr='+searchStr;
         bsTable.bootstrapTable('refresh', {url: url});
       }
 
-      this.saveGroup = function saveGroup(){
-        group['group_name'] = $("#group_name").val();
-        group['notes'] = $("#notes").val();
+      this.saveAccount= function(model){        
+        model['is_active'] = ($("#is_active").is(":checked")) ? 1:0;
 
-        service.saveGroup(group).then(function (result) {
+        service.saveAccount(model).then(function (result) {
             $scope.message(result.data);
+            $("input[type='reset']").trigger('click');
+            bsTable.bootstrapTable('refresh');
         });
+        
       }
+
 
 
     $scope.message = function(data)
     {
-      
+      console.log(data);
       if(data.status){
         $.notify({
           message: data.message
@@ -74,5 +79,5 @@ app.controller('pGroupCtrl', ['groupService' ,'$scope', function (service ,$scop
           });
       }
     }
-}])
-})(App)
+  }])
+  })(App)

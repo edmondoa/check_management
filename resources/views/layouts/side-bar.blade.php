@@ -26,18 +26,18 @@
   <ul class="sidebar-menu">
     <li class="header">MAIN NAVIGATION</li>
     <!-- Sales -->
-    <li class="treeview sales">
+    <li class="treeview accounts">
       <a href="/accounts">
         <i class="fa fa-laptop"></i> <span>Accounts</span>        
       </a>      
     </li>
     <li class="treeview sales">
-      <a href="/checkbook">
+      <a href="/checkbooks">
         <i class="fa fa-laptop"></i> <span>Check Book</span>        
       </a>      
     </li>
     <li class="treeview sales">
-      <a href="/check-issuance">
+      <a href="/check-issuances">
         <i class="fa fa-laptop"></i> <span>Check Issuance</span>        
       </a>      
     </li>
@@ -56,8 +56,8 @@
         <i class="fa fa-laptop"></i> <span>Check Settle</span>        
       </a>      
     </li>
-    <li class="treeview sales">
-      <a href="/payee">
+    <li class="treeview payees">
+      <a href="/payees">
         <i class="fa fa-laptop"></i> <span>Payee</span>        
       </a>      
     </li>

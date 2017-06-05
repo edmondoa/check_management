@@ -2,7 +2,7 @@
 
   'use strict';
 
-  app.controller('branchCtrl', ['branchService','$scope', function (service,$scope) {
+  app.controller('payeeCtrl', ['payeeService','$scope', function (service,$scope) {
 
       var ctrl = this;
       $scope.branch = {};
@@ -29,24 +29,21 @@
       this.filterRecord = function(model)
       {
         var searchStr = (typeof(model['searchStr'])=='undefined') ? '': model['searchStr'];
-        var url = '/branches/ng-branch-list?searchStr='+searchStr;
+        var url = '/payees/ng-payee-list?searchStr='+searchStr;
         bsTable.bootstrapTable('refresh', {url: url});
       }
 
-      this.saveBranch = function(model){
-        var fbranch = $("form[name='branch-form']").serializeArray();
-        for(var i=0; i<fbranch.length; i++){
-          if(fbranch[i]['value']=='? undefined:undefined ?'){
-            model[fbranch[i]['name']] = '';
-          }else{
-            model[fbranch[i]['name']] = fbranch[i]['value'];
-          }
+      this.savePayee= function(model){        
+        model['is_active'] = ($("#is_active").is(":checked")) ? 1:0;
 
-        }
-        service.saveBranch(model).then(function (result) {
-            $scope.message(result);
-            $("button [type='reset']").trigger('click');
+        service.savePayee(model).then(function (result) {
+            $scope.message(result.data);
+            $("input[type='reset']").trigger('click');
+            bsTable.bootstrapTable('refresh');
+            
         });
+       
+       
       }
 
 

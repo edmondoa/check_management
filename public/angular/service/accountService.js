@@ -4,10 +4,10 @@
     *   productService
     *   https://weblogs.asp.net/dwahlin/using-an-angularjs-factory-to-interact-with-a-restful-service
     */
-app.factory('branchService', ['HttpRequestFactory','$q','$timeout',function (HttpRequestFactory,$q,$timeout) {
-        var urlBase = '/branches';
+app.factory('accountService', ['HttpRequestFactory','$q','$timeout',function (HttpRequestFactory,$q,$timeout) {
+        var urlBase = '/accounts';
 
-      function saveBranch(model){
+      function saveAccount(model){
         console.log(model)
         var config;
         config = {
@@ -20,7 +20,7 @@ app.factory('branchService', ['HttpRequestFactory','$q','$timeout',function (Htt
       }
 
     	return {
-        saveBranch : saveBranch
+        saveAccount : saveAccount
     	};
     }]);
 
