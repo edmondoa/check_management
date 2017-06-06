@@ -36,7 +36,7 @@
         <i class="fa fa-laptop"></i> <span>Check Book</span>        
       </a>      
     </li>
-    <li class="treeview sales">
+    <li class="treeview check-issuances">
       <a href="/check-issuances">
         <i class="fa fa-laptop"></i> <span>Check Issuance</span>        
       </a>      

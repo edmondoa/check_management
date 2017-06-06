@@ -18,4 +18,9 @@ class CheckBook extends Model
     				'account_id' => 'required',
     				'check_number_start_no' => 'required|numeric',
     				'check_number_end_no' => 'required | numeric']	;
+
+    public function availableIssuance()
+    {
+    	return $this->hasMany('App\Models\Check','checkbook_id')->where('checks.check_status_id',1);
+    }				
 }
