@@ -16,10 +16,23 @@ app.factory('issuanceService', ['HttpRequestFactory','$q','$timeout',function (H
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         };
         return HttpRequestFactory.request(config);
-      }     
+      } 
+
+      function saveIssuance(model){       
+        var config;
+        config = {
+            method: 'POST',
+            url: urlBase,
+            data:$.param(model), 
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        };
+        return HttpRequestFactory.request(config);
+      } 
+
 
     	return {
-        getAvailableCheck : getAvailableCheck
+        getAvailableCheck : getAvailableCheck,
+        saveIssuance : saveIssuance
     	};
     }]);
 

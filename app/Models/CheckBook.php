@@ -21,6 +21,7 @@ class CheckBook extends Model
 
     public function availableIssuance()
     {
-    	return $this->hasMany('App\Models\Check','checkbook_id')->where('checks.check_status_id',1);
+    	return $this->hasMany('App\Models\Check','checkbook_id')->where('checks.check_status_id',1)
+    					->orWhere('checks.check_status_id',2);
     }				
 }

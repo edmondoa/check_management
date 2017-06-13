@@ -4,8 +4,8 @@
     *   productService
     *   https://weblogs.asp.net/dwahlin/using-an-angularjs-factory-to-interact-with-a-restful-service
     */
-app.factory('productService', ['HttpRequestFactory','$q','$timeout',function (HttpRequestFactory,$q,$timeout) {
-        var urlBase = '/products-regular';
+app.factory('wareHouseService', ['HttpRequestFactory','$q','$timeout',function (HttpRequestFactory,$q,$timeout) {
+        var urlBase = '/check-warehouses';
 
         function getPage(params, paramsObj) {
             var config;
@@ -17,13 +17,13 @@ app.factory('productService', ['HttpRequestFactory','$q','$timeout',function (Ht
             return HttpRequestFactory.request(config);
     	}
 
-      function saveProduct(product){
-        console.log(product);
+      function saveWareHouse(model){
+        console.log(model);
         var config;
         config = {
             method: 'POST',
             url: urlBase,
-            data:$.param(product),
+            data:$.param(model),
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         };
         return HttpRequestFactory.request(config);
@@ -31,7 +31,7 @@ app.factory('productService', ['HttpRequestFactory','$q','$timeout',function (Ht
 
     	return {
     		getPage: getPage,
-        saveProduct : saveProduct
+        saveWareHouse : saveWareHouse
     	};
     }]);
 

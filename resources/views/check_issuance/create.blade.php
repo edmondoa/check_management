@@ -1,7 +1,7 @@
 <div class='col-md-6 col-md-offset-3'>
     <div class="box">
       	<div class="box-body">
-			<form ng-submit="ac.saveAccount(issuance)">
+			<form ng-submit="ic.saveIssuance(issuance)">
 				
 				<div class="form-group">
 			        <label for="account_no">Account No</label>
@@ -32,22 +32,26 @@
 			    </div>
 			    <div class="form-group">
 			        <label for="account_no">Amount</label>
-			        <input type="text" name='amount' class="form-control" ng-model='issuance.amount',tabindex="4"/>
+			        <input type="text" name='check_amount' class="form-control" ng-model='issuance.check_amount',tabindex="4"/>
+			    </div>	
+			    <div class="form-group">
+			        <label for="account_no">Check Date</label>
+			        <input type="text" name='check_date' class="form-control date_picker" ng-model='issuance.check_date',tabindex="5"/>
 			    </div>			    
 			    
 				<div class="form-group">
 			      <label for="bank_code">Notes</label>
-			      <textarea class="form-control" name='notes'rows="3" cols="50"  tabindex="5" ng-model='issuance.notes'>				      	
+			      <textarea class="form-control" name='notes'rows="3" cols="50"  tabindex="6" ng-model='issuance.notes'>				      	
 			      </textarea>
 			      
 			    </div>			    
 			    <div class='text-center'>
 			    	<div class="form-group">
 				      	<label for="bank_code"></label>
-				     	<input type="submit" class='btn btn-success' value="Create" tabindex="6"/>
+				     	<input type="submit" class='btn btn-success' value="Create" tabindex="7"/>
 				    
 				      	<label for="bank_code"></label>
-				     	<input type="reset" class='btn btn-default' value="Clear" tabindex="7"/>
+				     	<input type="reset" class='btn btn-default' value="Clear" tabindex="8"/>
 				    </div>
 			    </div>					
 			    
