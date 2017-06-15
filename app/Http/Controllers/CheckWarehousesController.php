@@ -65,9 +65,11 @@ class CheckWarehousesController extends Controller
     		$data = ['check_id' => $check->check_id,
     				'payee_id' => $inputs['payee_id'],
     				'warehouse_date' => $inputs['warehouse_date'],
-    				'created_on' => $inputs['created_on'],
+    				'created_on' => $inputs['created_on'],                    
     				'created_user_id' => $inputs['created_user_id']];
     		if(CheckWarehouse::create($data)){
+                $check->check_status_id = 2;
+                $check->save();
     			return ['check_no' => $checkno, 'response'=>'Check warehouse created!','class'=>'text-success'];
     		}
     		return ['check_no' => $checkno, 'response'=>'Unable to process!', 'class'=>'text-danger'];		

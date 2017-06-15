@@ -4,14 +4,14 @@
     *   productService
     *   https://weblogs.asp.net/dwahlin/using-an-angularjs-factory-to-interact-with-a-restful-service
     */
-app.factory('supplierService', ['HttpRequestFactory','$q','$timeout',function (HttpRequestFactory,$q,$timeout) {
-        var urlBase = '/suppliers';
+app.factory('cancelService', ['HttpRequestFactory','$q','$timeout',function (HttpRequestFactory,$q,$timeout) {
+        var urlBase = '/check-reset';
 
-      function saveSupplier(model){
+      function setCancel(model){
         var config;
         config = {
             method: 'POST',
-            url: urlBase,
+            url: urlBase+'/cancel',
             data:$.param(model),
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         };
@@ -19,7 +19,7 @@ app.factory('supplierService', ['HttpRequestFactory','$q','$timeout',function (H
       }
 
     	return {
-        saveSupplier : saveSupplier
+        setCancel : setCancel
     	};
     }]);
 

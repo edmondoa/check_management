@@ -9,6 +9,7 @@ use App\Models\Check;
 use App\Models\CheckBook;
 use App\Models\Payee;
 use App\Models\CheckIssuance;
+use App\Models\CheckWarehouse;
 use Validator;
 use Response;
 use Auth;
@@ -75,6 +76,13 @@ class CheckIssuancesController extends Controller
             return Response::json(['status'=>false,'message' => "Error in proccessing, Please contact your administrator!"]);
         }
 
+    }
+
+    public function getPayee($check_id)
+    {
+        Core::setConnection();
+        $check = CheckWarehouse::with('payee')->find($check_id);
+        return $check->payee;
     }
 
 }

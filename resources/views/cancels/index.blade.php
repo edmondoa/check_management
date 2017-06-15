@@ -6,20 +6,21 @@
     <section class="content-header">      
       <ol class="breadcrumb">
         <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><i class="fa fa-circle"></i> Warehouse</li>
+        <li class="active"><i class="fa fa-circle"></i> Check Reset</li>
         
       </ol>
     </section>
 
     <!-- Main content -->
-    <section class="content" ng-controller='wareHouseCtrl as wc'>
+    <section class="content" ng-controller='cancelCtrl as cc'>
       	<!-- Account Create -->
-      	<div class="col-md-5">
-          @include('warehouses.create')
+      	<div class="col-md-4">
+        @include('cancels.create')
         </div>
-        <div class="col-md-7">
-          @include('warehouses.result')
+        <div class="col-md-8">
+        @include('cancels.result')
         </div>
+       
         
     	<!-- Account List -->	    
     </section>
@@ -27,15 +28,15 @@
 @stop
 @section('html_footer')
 @parent
-<script src="/angular/controllers/wareHouse.js"></script>
+<script src="/angular/controllers/cancel.js"></script>
 <script src="/angular/service/HttpRequestFactory.js"></script>
-<script src="/angular/service/wareHouseService.js"></script>
+<script src="/angular/service/cancelService.js"></script>
 <script src="/plugins/iCheck/icheck.min.js"></script>
 <script src="/plugins/select2/select2.full.min.js"></script>
 <script type="text/javascript">
 
   $(document).ready(function(){    
-    $("li.check-issuances").addClass("active");
+    $("li.cancels").addClass("active");
     $(".date_picker").datepicker({'autoClose':true});
   })
   $(function () {   

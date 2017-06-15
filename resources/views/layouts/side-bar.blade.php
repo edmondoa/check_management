@@ -42,13 +42,13 @@
       </a>      
     </li>
     <li class="treeview sales">
-      <a href="/check-warehouse">
+      <a href="/check-warehouses">
         <i class="fa fa-laptop"></i> <span>Check Warehouse</span>        
       </a>      
     </li>
-    <li class="treeview sales">
-      <a href="/check-cance">
-        <i class="fa fa-laptop"></i> <span>Check Cancel</span>        
+    <li class="treeview cancels">
+      <a href="/check-reset">
+        <i class="fa fa-laptop"></i> <span>Check Reset</span>        
       </a>      
     </li>
     <li class="treeview sales">

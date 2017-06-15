@@ -1,4 +1,4 @@
-<div >
+<div>
 	<div class="box">
 	    <div class='header'>Result</div>
 	    <div class="box-body">

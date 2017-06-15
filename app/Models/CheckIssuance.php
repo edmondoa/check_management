@@ -10,10 +10,18 @@ class CheckIssuance extends Model
 
     public $timestamps = false;
 
+    protected $primaryKey = 'check_id';
+
     protected $fillable = ['check_amount','check_id','paye_id','check_date',
     						'checkbook_id','notes','check_status_id','check_user_id','created_on']; 
     public static $rules = ['check_amount' => "required | numeric",
     					'check_no'	 => "required",
     					'payee_id'	=> 'required',
     					'check_date' => 'required'];
+
+
+    public function payee()
+    {
+    	return $this->belongsTo('App\Models\Payee','payee_id');
+    }					
 }

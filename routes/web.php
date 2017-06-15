@@ -20,9 +20,13 @@ Route::group(['middleware' => 'web'], function () {
 	
 	Route::get('checkbooks/ng-checkbook-list',"CheckBooksController@checkbookList");
 	Route::resource('checkbooks',"CheckBooksController");
+
+	Route::get('check-issuances/payee/{check_id}',"CheckIssuancesController@getPayee");
 	Route::resource('check-issuances',"CheckIssuancesController");
 	Route::resource('check-warehouses',"CheckWarehousesController");
-	Route::resource('check-cancels',"CheckCancelsController");
+
+	Route::get('check-reset/cancel',"CheckCancelController@cancel");
+	Route::resource('check-reset',"CheckCancelController");
 	Route::resource('check-settles',"CheckSettlesController");
 
 	Route::get('payees/ng-payee-list',"PayeesController@payeeList");

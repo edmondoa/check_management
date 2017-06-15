@@ -16,6 +16,17 @@ app.factory('issuanceService', ['HttpRequestFactory','$q','$timeout',function (H
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         };
         return HttpRequestFactory.request(config);
+      }
+
+      function getPayee(model){
+        console.log(model);
+        var config;
+        config = {
+            method: 'GET',
+            url: urlBase+'/payee/'+model.check_no,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        };
+        return HttpRequestFactory.request(config);
       } 
 
       function saveIssuance(model){       
@@ -32,7 +43,8 @@ app.factory('issuanceService', ['HttpRequestFactory','$q','$timeout',function (H
 
     	return {
         getAvailableCheck : getAvailableCheck,
-        saveIssuance : saveIssuance
+        saveIssuance : saveIssuance,
+        getPayee  : getPayee
     	};
     }]);
 

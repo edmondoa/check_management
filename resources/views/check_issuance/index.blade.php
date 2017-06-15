@@ -31,6 +31,11 @@
   $(document).ready(function(){    
     $("li.check-issuances").addClass("active");
     $(".date_picker").datepicker({'autoClose':true});
+
+  })
+
+  $(document).on("change","select.check_no",function(){
+    $("a.checkWarehouse").trigger('click');
   })
   $(function () {   
    	$(".select2").select2();
