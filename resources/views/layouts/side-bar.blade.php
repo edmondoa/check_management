@@ -51,7 +51,7 @@
         <i class="fa fa-laptop"></i> <span>Check Reset</span>        
       </a>      
     </li>
-    <li class="treeview sales">
+    <li class="treeview check-settle">
       <a href="/check-settle">
         <i class="fa fa-laptop"></i> <span>Check Settle</span>        
       </a>      

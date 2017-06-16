@@ -4,15 +4,14 @@
 
   app.controller('cancelCtrl', ['cancelService','$scope','$window', function (service,$scope,$window) {
 
-      var ctrl = this;     
+      var ctrl = this;   
+      ctrl.results = [];  
       this.setCancel= function(model){         
         console.log(model);     
         service.setCancel(model).then(function (result) {
             
             if(result.data.status){
-              ctrl.warehouses = result.data.result;
-              console.log(ctrl.warehouses);
-              console.log(result.data); 
+              ctrl.results = result.data.result;              
             }else{
               $scope.message(result.data);
             }

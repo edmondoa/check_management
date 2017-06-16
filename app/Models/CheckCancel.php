@@ -9,7 +9,7 @@ class CheckCancel extends Model
     protected $table = 'check_cancels';
     public $timestamps = false;
 
-    protected $primaryKey = 'check_id';
+    
     
     protected $fillable =['check_id','created_on','created_user_id'];
 

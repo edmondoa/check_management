@@ -8,7 +8,11 @@ use App\Models\CheckCancel;
 use App\Models\CheckWarehouse;
 use App\Models\CheckIssuance;
 use App\Models\CheckSettle;
+use App\Models\Check;
 use App\Libraries\Core;
+use Auth;
+use Response;
+use Validator;
 class CheckCancelController extends Controller
 {
     public function __construct()
@@ -26,7 +30,7 @@ class CheckCancelController extends Controller
     	
     }
 
-    public function cancel()
+    public function setCancel(Request $req)
     {
     	Core::setConnection();  
         $inputs = $req->input();
@@ -54,21 +58,36 @@ class CheckCancelController extends Controller
 
     private function cancelProcess($checkno,$inputs)
     {
-    	$check = Check::where('check_no',$checkno)    					
+    	$check = Check::where('check_no',$checkno)                          					
     					->first();
     	if($check)
     	{
+            $onlyNotNew = Check::where('check_no',$checkno)
+                        ->where('check_status_id',1)                       
+                        ->first();
+            if($onlyNotNew){
+                return ['check_no' => $checkno, 'response'=>'This is a new check','class'=>'text-info'];
+            }            
     		$data = ['check_id' => $check->check_id,    				
     				'created_on' => $inputs['created_on'],                    
     				'created_user_id' => $inputs['created_user_id']];
-    		if(CheckCancel::create($data)){
+    		
+            if(CheckCancel::create($data)){
                 $check->check_status_id = 1;
                 $check->save();
-                CheckWarehouse::where('check_id',$check->check_id)->delete();
-                CheckIssuance::where('check_id',$check->check_id)->delete();
-                CheckSettle::where('check_id',$check->check_id)->delete();
+                $warehouse = CheckWarehouse::find($check->check_id);
+                if($warehouse)
+                    $warehouse->delete();
 
-    			return ['check_no' => $checkno, 'response'=>'Check warehouse created!','class'=>'text-success'];
+                $issuance = CheckIssuance::find($check->check_id);
+                if($issuance)
+                    $issuance->delete();
+
+                $settle = CheckSettle::find($check->check_id);
+                if($settle)
+                    $settle->delete();
+
+    			return ['check_no' => $checkno, 'response'=>'Successfully cancelled!','class'=>'text-success'];
     		}
     		return ['check_no' => $checkno, 'response'=>'Unable to process!', 'class'=>'text-danger'];		
     	}	
