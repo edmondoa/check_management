@@ -1,10 +1,10 @@
-<div>
+<div ng-load="sc.getSettle()">
 	<div class="box">
-	    <div class='header'><h4>Result</h4></div>
-	    <div class="box-body">
-	    <ul ng-repeat='result in cc.results'>
-	    	<li ng-class="result.class"><span ng-bind="result.check_no"></span> - <span ng-bind="result.response" ></span></li>
-	    </ul>
+	    <div class='header'><h4>Result
+	    <a href="#" class='pull-right btn btn-sm btn-primary' ng-show="sc.results.length > 0" ng-click="sc.setCommit()">Commit</a>
+
+	    </h4></div>
+	    <div class="box-body">	    
 	    <table class="table table-bordered">
 	    	<thead>
 	    		<th>Check No</th>
@@ -15,7 +15,7 @@
 	    		<th>Variance</th>
 	    	</thead>
 	    	<tbody>
-	    		<tr ng-repeat="set in settles">
+	    		<tr ng-repeat="set in sc.results">
 	    			<td ng-bind="set.check_no"></td>
 	    			<td ng-bind="set.check_date"></td>
 	    			<td ng-bind="set.payee"></td>

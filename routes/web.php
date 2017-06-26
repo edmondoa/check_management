@@ -27,6 +27,10 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::post('check-reset/cancel',"CheckCancelController@setCancel");
 	Route::resource('check-reset',"CheckCancelController");
+
+	Route::get('check-settle/setCommit','CheckSettleController@setCommit');
+	Route::get('check-settle/getSettle','CheckSettleController@getSettle');
+	Route::post('check-settle/findCheck','CheckSettleController@findCheck');
 	Route::resource('check-settle',"CheckSettleController");
 
 	Route::get('payees/ng-payee-list',"PayeesController@payeeList");

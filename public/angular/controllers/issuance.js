@@ -10,6 +10,7 @@
       {        
         console.log(model)
         service.getAvailableCheck(model).then(function (result) {
+            console.log(result);
             var opt="<option>Select</option>";
             for(var i = 0; i < result.data.length; i++){
               opt+="<option value="+result.data[i].check_id+" data-status='"+result.data[i].check_status_id+"'>"+result.data[i].check_no+"</option>";

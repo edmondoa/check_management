@@ -18,7 +18,7 @@ class Account extends Model
     				'account_no' => 'required|unique:accounts,account_no',
     				'bank_code' => 'required']	;
 
-    public function checbooks()
+    public function checkbooks()
     {
     	return $this->hasMany('App\Models\CheckBook','account_id');
     }				
