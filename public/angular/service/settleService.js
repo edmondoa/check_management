@@ -46,11 +46,22 @@ app.factory('settleService', ['HttpRequestFactory','$q','$timeout',function (Htt
         return HttpRequestFactory.request(config);
       }
 
+      function setCancel(model){
+        var config;
+        config = {
+            method: 'GET',
+            url: urlBase+'/cancel',            
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        };
+        return HttpRequestFactory.request(config);
+      }
+
     	return {
         setSettle : setSettle,
         getSettle : getSettle,
         findCheck : findCheck,
-        setCommit : setCommit
+        setCommit : setCommit,
+        setCancel : setCancel
     	};
     }]);
 

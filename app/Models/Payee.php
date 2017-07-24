@@ -15,6 +15,6 @@ class Payee extends Model
     			'notes','created_on','created_user_id'];
 
     public static $rules =[    				
-    				'payee_name' => 'required'];
+    				'payee_name' => 'required|unique:payees,payee_name'];
     				
 }

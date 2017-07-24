@@ -21,8 +21,13 @@
 	          <div class="box-body">
 	            <div class='row'>
 	              <div class='col-md-5 pull-right'>
-	                <div class='col-md-8'>
-	                  <input type='text'class='form-control' ng-model="filterBy.searchStr" placeholder="Filter" ng-keyup="bc.filterRecord(filterBy)"/>
+	                <div class='col-md-8 pull-right'>
+	                  <select class='form-control' ng-model="filterBy.searchStr" ng-change="cb.filterRecord(filterBy)">
+	                  	<option value="">Select</option>
+	                  	@foreach($accounts as $account)
+	                  		<option value="{{$account->account_no}}">{{strtoupper($account->bank_code).substr($account->account_no, -3)}}</option>
+	                  	@endforeach
+	                  </select>		                 
 	                </div>
 	                
 	              </div>
@@ -38,10 +43,11 @@
 	             js-bootstraptable>
 	            <thead>
 	                <tr>
+	                    <th class="col-md-4" data-field="checkbook_id" >Checkbook ID</th>
 	                    <th class="col-md-4" data-field="account_no" >Account #</th>
 	                    <th class="col-md-3"data-field="check_number_start_no" >Check Number Start</th>
 	                    <th class="col-md-3"data-field="check_number_end_no" >Check Number End</th>                    
-	                    <th style='width:50px' data-field="action" class="action">Action</th>
+	                    <!-- <th style='width:50px' data-field="action" class="action">Action</th> -->
 	                </tr>
 	            </thead>
 	            </table>

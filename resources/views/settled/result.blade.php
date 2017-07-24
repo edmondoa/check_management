@@ -2,7 +2,7 @@
 	<div class="box">
 	    <div class='header'><h4>Result
 	    <a href="#" class='pull-right btn btn-sm btn-primary' ng-show="sc.results.length > 0" ng-click="sc.setCommit()">Commit</a>
-
+	    <a href="#" class='pull-right btn btn-sm btn-danger' ng-show="sc.results.length > 0" ng-click="sc.setCancel()" style="margin-right:10px">Cancel</a>
 	    </h4></div>
 	    <div class="box-body">	    
 	    <table class="table table-bordered">
@@ -23,7 +23,7 @@
 	    			<td ng-bind="set.check_amount"></td>
 	    			<td ng-bind="set.amount"></td>
 	    			<td ng-bind="set.variance"></td>
-	    			<td ><i ng-class="(set.status=='success') ? fa-check : fa-times" ></i></td>
+	    			<td ><i ng-class="(set.status=='success') ? 'fa fa-check' : 'fa fa-times'" ></i></td>
 	    		</tr>
 	    	</tbody>
 	    </table>

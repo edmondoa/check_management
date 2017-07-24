@@ -28,6 +28,7 @@ Route::group(['middleware' => 'web'], function () {
 	Route::post('check-reset/cancel',"CheckCancelController@setCancel");
 	Route::resource('check-reset',"CheckCancelController");
 
+	Route::get('check-settle/cancel','CheckSettleController@cancel');
 	Route::get('check-settle/setCommit','CheckSettleController@setCommit');
 	Route::get('check-settle/getSettle','CheckSettleController@getSettle');
 	Route::post('check-settle/findCheck','CheckSettleController@findCheck');
@@ -36,6 +37,9 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('payees/ng-payee-list',"PayeesController@payeeList");
 	Route::resource('payees',"PayeesController");
 	Route::resource('reports',"ReportsController");
+
+	Route::get('logs',"LogsController@index");
+	Route::get('logs/ng-list',"LogsController@logs");
 });
 
 

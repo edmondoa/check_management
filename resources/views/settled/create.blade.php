@@ -20,10 +20,9 @@
 			    </div>	
 			    <div class="form-group">
 			        <label for="account_no">Check No</label>
-			        <div class="input-group">
-	                  <input type="text" class="form-control " id="check_no" ng-model='models.check_no' name='check_no' tabindex="3" style='padding:6px 2px !important' on-enter="sc.findCheck(models)">
-	                  <a href="#" class='btn btn-sm btn-default input-group-addon  search-prod' ng-click="sc.findCheck(models)"><i class='fa fa-magnify'></i> Search!</a>
-	                </div>
+			        <input type="text" class="form-control " id="check_no" ng-model='models.check_no' name='check_no' tabindex="3" ><!--  on-enter="sc.findCheck(models)" -->
+	                  <!-- <a href="#" class='btn btn-sm btn-default input-group-addon  search-prod' ng-click="sc.findCheck(models)"><i class='fa fa-magnify'></i> Search!</a> -->
+	                
 			    </div>
 			    <div class="form-group">
 			        <label for="account_no">Payee</label>
@@ -36,7 +35,7 @@
 			        <input type="text" name='check_amount' class="form-control" readonly />
 			    </div>
 			     <div class="form-group">
-			        <label for="account_no">Amount</label>
+			        <label for="account_no">Clear Amount</label>
 			        <input type="text" name='amount' class="form-control"  ng-model='models.amount'tabindex="4"/>
 			    </div>
 			    			    

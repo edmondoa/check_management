@@ -6,6 +6,7 @@
 					<div class="form-group">
 				      <label for="bank_code">Name</label>
 				      <input type="text" class="form-control" id="payee_name" tabindex="1" ng-model='payee.payee_name'>
+				      <input type="hidden" class="form-control" id="payee_id"  ng-model='payee.payee_id'>
 				    </div>
 			    </div>			
 			    <div class="col-sm-1">
@@ -17,7 +18,7 @@
 			    <div class="col-sm-4">
 					<div class="form-group">
 				      <label for="bank_code">Notes</label>
-				      <textarea class="form-control" name='notes'rows="3" cols="50"  tabindex="4" ng-model='payee.notes'>				      	
+				      <textarea class="form-control" id="notes" name='notes'rows="3" cols="50"  tabindex="4" ng-model='payee.notes'>				      	
 				      </textarea>
 				      
 				    </div>

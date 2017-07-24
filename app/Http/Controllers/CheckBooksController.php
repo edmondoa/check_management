@@ -65,7 +65,7 @@ class CheckBooksController extends Controller
     					'created_on' =>date('Y-m-d H:i:s'),
     					'created_user_id' => Auth::user()->user_id
     			];
-    		dump(Check::create($data));	
+    		Check::create($data);	
     	}
     }
 
@@ -75,8 +75,11 @@ class CheckBooksController extends Controller
       	$start = $req->offset;
       	$limit = $req->limit;
       	$search = @$req->searchStr;
-      	$sql =  CheckBook::leftJoin('accounts', 'checkbooks.account_id', '=', 'accounts.account_id')
-      			->whereRaw("accounts.account_no LIKE ('%".$search."%') ");
+      	$sql =  CheckBook::leftJoin('accounts', 'checkbooks.account_id', '=', 'accounts.account_id');
+        if($search){
+           $sql =  $sql->whereRaw("accounts.account_no ='".$search."' ");
+        }
+      			
       	$total = $sql->count();
       	$list = $sql->skip($start)->take($limit)->get(['accounts.account_no','checkbooks.check_number_start_no',
       												'checkbooks.check_number_end_no','checkbooks.checkbook_id']);
@@ -86,6 +89,7 @@ class CheckBooksController extends Controller
         $action .= "</div>";
         return [
             'action' => $action,
+            'checkbook_id' =>  $row['checkbook_id'],
             'account_no' =>  $row['account_no'],
             'check_number_start_no'  =>  $row['check_number_start_no'],
             'check_number_end_no'   =>  $row['check_number_end_no']         

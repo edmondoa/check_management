@@ -7,19 +7,75 @@
       var ctrl = this;   
       ctrl.results = []; 
       getSettle(); 
-      this.setSettle= function(model){         
-        model['payee'] = $("input[name='payee']").val(); 
-        model['payee_id'] = $("input[name='payee_id']").val();
-        model['check_id'] = $("input[name='check_id']").val(); 
-        model['check_amount'] = $("input[name='check_amount']").val();    
-        service.setSettle(model).then(function (result) {            
-          if(result.data.status){
-            ctrl.results = result.data.results;              
-          }else{
-            $scope.message(result.data);
-          }                       
-            
-        });       
+      this.setSettle= function(model){ 
+        var botbox = bootbox.confirm({
+          title: "Confirm",
+          message: "Are you sure you want to proceed?",
+          size: 'small',
+          buttons: {
+              cancel: {
+                  label: '<i class="fa fa-times"></i> Cancel',
+                  className: 'btn-danger'
+              },
+              confirm: {
+                  label: '<i class="fa fa-check"></i> Confirm',
+                  className: 'btn-success'
+              }
+          },
+          callback: function (result) {           
+             if(result){
+              model['payee'] = $("input[name='payee']").val(); 
+              model['payee_id'] = $("input[name='payee_id']").val();
+              model['check_id'] = $("input[name='check_id']").val(); 
+              model['check_amount'] = $("input[name='check_amount']").val();    
+             
+              service.setSettle(model).then(function (result) {            
+                if(result.data.status){
+                  ctrl.results = result.data.results; 
+                  $("input[type='reset']").trigger('click');             
+                }else{
+                  $scope.message(result.data);
+                } 
+
+                  
+              });
+              
+             }
+          }
+        }); 
+
+              
+      }
+
+      this.setCancel = function(){ 
+        var botbox = bootbox.confirm({
+          title: "Confirm",
+          message: "Are you sure you want to Cancel?",
+          size: 'small',
+          buttons: {
+              cancel: {
+                  label: '<i class="fa fa-times"></i> Cancel',
+                  className: 'btn-danger'
+              },
+              confirm: {
+                  label: '<i class="fa fa-check"></i> Confirm',
+                  className: 'btn-success'
+              }
+          },
+          callback: function (result) {           
+             if(result){
+              service.setCancel().then(function (result) {            
+                if(result.data.status){
+                  ctrl.results = result.data.results;              
+                }else{
+                  $scope.message(result.data);
+                }                       
+                    
+              });
+             }
+          }
+        });      
+        
       }
 
       this.findCheck = function(model){
@@ -46,9 +102,30 @@
 
       this.setCommit = function()
       {
-        service.setCommit().then(function (result) {            
-          ctrl.results = result.data.results;             
+        var botbox = bootbox.confirm({
+          title: "Confirm",
+          message: "Are you sure you want to commit this list of checks?",
+          size: 'small',
+          buttons: {
+              cancel: {
+                  label: '<i class="fa fa-times"></i> Cancel',
+                  className: 'btn-danger'
+              },
+              confirm: {
+                  label: '<i class="fa fa-check"></i> Confirm',
+                  className: 'btn-success'
+              }
+          },
+          callback: function (result) {           
+             if(result){
+              service.setCommit().then(function (result) {            
+                ctrl.results = result.data.results;             
+              }); 
+             }
+          }
         }); 
+
+        
       }
       function getSettle(){
         service.getSettle().then(function (result) {            
@@ -91,5 +168,7 @@
           });
       }
     }
+
+   
   }])
   })(App)

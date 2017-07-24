@@ -57,6 +57,12 @@ class CheckSettleController extends Controller
         }			
     }
 
+    public function cancel()
+    {
+        Session::forget('settled');
+        return Response::json(['status'=>true,'results' => null]);
+    }
+
     public function store(Request $req)
     {
     	Core::setConnection();  

@@ -12,7 +12,12 @@
 				      	@endforeach
 
 				    </select>
-			    </div>	    			    
+			    </div>	
+
+			    <div class="form-group">
+			    	<label for="warehouse_date">Warehouse Date</label>
+			    	<input type="text" name='warehouse_date' class="form-control date_picker" ng-model='models.warehouse_date'tabindex="2"/>
+			    </div>    			    
 				
 			    <div class="form-group">
 			        <label for="account_no">Payee</label>

@@ -76,6 +76,13 @@
     </li>
     @endif
     @if(in_array(Auth::user()->user_level_id,[1]))
+    <li class="treeview logs">
+      <a href="/logs">
+        <i class="fa fa-laptop"></i> <span>Logs</span>        
+      </a>      
+    </li>
+    @endif
+    @if(in_array(Auth::user()->user_level_id,[1]))
     <li class="treeview payees">
       <a href="/reports">
         <i class="fa fa-laptop"></i> <span>Reports</span>        

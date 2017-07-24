@@ -11,7 +11,8 @@
 			    <div class="col-sm-3">
 					<div class="form-group">
 				      <label for="account_no">Account No</label>
-				      <input type="text" class="form-control" id="account_no" tabindex="2" ng-model='account.account_no'>
+				      <input type="number" class="form-control" id="account_no" tabindex="2" ng-model='account.account_no' min='0'>
+				      <input type="hidden" class="form-control" id="account_id" ng-model='account.account_id'>
 				    </div>
 			    </div>
 			    <div class="col-sm-1">
@@ -23,7 +24,7 @@
 			    <div class="col-sm-3">
 					<div class="form-group">
 				      <label for="bank_code">Notes</label>
-				      <textarea class="form-control" name='notes'rows="3" cols="50"  tabindex="4" ng-model='account.notes'>				      	
+				      <textarea class="form-control" id="notes" name='notes'rows="3" cols="50"  tabindex="4" ng-model='account.notes'>				      	
 				      </textarea>
 				      
 				    </div>

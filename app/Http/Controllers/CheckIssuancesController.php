@@ -65,8 +65,10 @@ class CheckIssuancesController extends Controller
             return Response::json(['status'=>false,'message' => $validate->messages()]);
         }
         
-        $check = Check::find($inputs['check_no']);
-
+        $check = Check::where('check_no',$inputs['check_no'])->first();
+        if(!$check){
+            return Response::json(['status'=>false,'message' => ['Check No does not exist']]);
+        }    
         $check->check_amount = $inputs['check_amount'];
         $check->notes = $inputs['notes'];
         $check->check_status_id = 3;

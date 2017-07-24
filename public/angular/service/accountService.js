@@ -18,9 +18,21 @@ app.factory('accountService', ['HttpRequestFactory','$q','$timeout',function (Ht
         };
         return HttpRequestFactory.request(config);
       }
+      function updateAccount(model){
+        console.log(model)
+        var config;
+        config = {
+            method: 'PUT',
+            url: urlBase+'/'+model['account_id'],
+            data:$.param(model),          
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        };
+        return HttpRequestFactory.request(config);
+      }
 
     	return {
-        saveAccount : saveAccount
+        saveAccount : saveAccount,
+        updateAccount :updateAccount
     	};
     }]);
 

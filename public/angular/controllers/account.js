@@ -33,18 +33,48 @@
         bsTable.bootstrapTable('refresh', {url: url});
       }
 
-      this.saveAccount= function(model){        
-        model['is_active'] = ($("#is_active").is(":checked")) ? 1:0;
-
-        service.saveAccount(model).then(function (result) {
+      this.saveAccount= function(model){ 
+        if(typeof model === 'undefined')
+        {
+          var model = {};
+          model['is_active'] = 0;
+        }else{
+          model['is_active'] = ($("#is_active").is(":checked")) ? 1:0;
+          
+        }
+        var method = $("input[type='submit']").val();
+        if(method=='Create'){
+          service.saveAccount(model).then(function (result) {
             $scope.message(result.data);
-            $("input[type='reset']").trigger('click');
-            bsTable.bootstrapTable('refresh');
-        });
+            if(result.data.status){
+              $("input[type='reset']").trigger('click');
+              bsTable.bootstrapTable('refresh');
+            }              
+          });
+        }else{
+          var model = {};
+          model['is_active'] = ($("#is_active").is(":checked")) ? 1:0;
+          model['bank_code'] = $("#bank_code").val();
+          model['account_no'] = $("#account_no").val();
+          model['account_id'] = $("#account_id").val();
+          model['notes'] = $("#notes").val();         
+          service.updateAccount(model).then(function (result) {
+            $scope.message(result.data);
+            if(result.data.status){
+              $("input[type='reset']").trigger('click');
+              $("input[type='submit']").val('Create'); 
+              bsTable.bootstrapTable('refresh');
+            }              
+          });
+        }    
+        
         
       }
 
-
+      $scope.getAccount = function(id)
+      {
+        alert(id);
+      }
 
     $scope.message = function(data)
     {
