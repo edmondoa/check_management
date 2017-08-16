@@ -6,20 +6,27 @@
     <section class="content-header">      
       <ol class="breadcrumb">
         <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><i class="fa fa-circle"></i> Payees</li>
+        <li class="active"><i class="fa fa-circle"></i> Reports</li>
         
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content" ng-controller='payeeCtrl as pc'>
-      	<!-- Account Create -->
-      	@include('payees.create')
+      	<!-- Account Create -->      	
     	<!-- Account List -->
 	    <div class='col-md-12'>
 	        <div class="box">
 	          <div class="box-body">
-	            
+	            <div class='row'>
+	              <div class='col-md-5 pull-right'>
+	                <div class='col-md-8'>
+	                  <input type='text'class='form-control' ng-model="filterBy.searchStr" placeholder="Filter" ng-keyup="pc.filterRecord(filterBy)"/>
+	                </div>
+	               
+	              </div>
+	            </div>
+	            <br>
 	            <table id="payees" class="bsTable table table-striped"
 	             data-url="/payees/ng-payee-list"
 	             data-pagination="true"
@@ -31,7 +38,7 @@
 	            <thead>
 	                <tr>
 	                    <th class="col-md-4" data-field="payee_name" >Payee Name</th>
-	                    <th class="col-md-2"data-field="status" >Status</th>  
+	                    <th class="col-md-2"data-field="active" >Active</th>  
 	                    <th class="col-md-5"data-field="notes" >Notes</th>                    
 	                    <th style='width:50px' data-field="action" class="action">Action</th>
 	                </tr>
@@ -63,28 +70,6 @@
       radioClass: 'iradio_flat-green'
     });
   });
-  $(document).on('click','.payee-edit',function(e){
-  	e.preventDefault();
-  	var id = $(this).data('id');
-  	startLoad();
-  	$.get('payees/'+id,function(data){
-  		stopLoad();
-  		$("#payee_name").val(data.payee_name);
-  		$("#payee_id").val(data.payee_id);
-  		if(data.is_active){
-        $(".icheckbox_flat-green").addClass('checked')
-        $(".icheckbox_flat").attr("aria-checked","true");
-  			$("#is_active").attr('checked','checked');
-  		}else{
-        $(".icheckbox_flat").attr("aria-checked","false");
-        $(".icheckbox_flat-green").removeClass('checked')
-  			$("#is_active").removeAttr('checked');
-  		}
-  		
-  		$("#notes").val(data.notes);  		
-  		$("input[type='submit']").val('Update');  		
-  	})
-  })
 </script>
 
 

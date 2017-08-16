@@ -34,10 +34,22 @@ class CheckIssuancesController extends Controller
     public function show($id)
     {
         Core::setConnection();
-        $checbook = CheckBook::with('availableIssuance')->find($id);
-        if(@$checbook->availableIssuance)
-            return $checbook->availableIssuance;
-        else
+        $account = Account::whereHas('checkbooks',function($qry){
+            $qry->with('availableIssuance');
+        })->find($id);
+        $checkbooks = $account->checkbooks;
+        $result = [];
+        if(@$checkbooks){    
+            foreach ($checkbooks as $checkbook) {                
+                if(count(@$checkbook->availableIssuance)>0){
+                    foreach (@$checkbook->availableIssuance as $check) {
+                       array_push($result, ['check_id'=>$check->check_id,'check_no'=>$check->check_no]);
+                    }
+                }         
+                    
+            }
+            return $result;    
+        }
             return [];
     }
 
@@ -53,8 +65,10 @@ class CheckIssuancesController extends Controller
             return Response::json(['status'=>false,'message' => $validate->messages()]);
         }
         
-        $check = Check::find($inputs['check_no']);
-
+        $check = Check::where('check_no',$inputs['check_no'])->first();
+        if(!$check){
+            return Response::json(['status'=>false,'message' => ['Check No does not exist']]);
+        }    
         $check->check_amount = $inputs['check_amount'];
         $check->notes = $inputs['notes'];
         $check->check_status_id = 3;

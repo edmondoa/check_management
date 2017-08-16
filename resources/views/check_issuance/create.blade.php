@@ -17,9 +17,10 @@
 			    			    
 				<div class="form-group">
 			        <label for="account_no">Check No</label>
-			        <select class="form-control select2 check_no"   name='check_no'tabindex="2" >
+			        <input type="text" class="form-control"name="check_no" tabindex="2" >
+			        <!-- <select class="form-control select2 check_no"   name='check_no'tabindex="2" >
 				      	<option >Select</option> 
-				    </select>
+				    </select> -->
 			    </div>	
 			    <div class="form-group">
 			        <label for="account_no">Payee</label>

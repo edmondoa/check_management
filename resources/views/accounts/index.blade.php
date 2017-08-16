@@ -18,16 +18,7 @@
     	<!-- Account List -->
 	    <div class='col-md-12'>
 	        <div class="box">
-	          <div class="box-body">
-	            <div class='row'>
-	              <div class='col-md-5 pull-right'>
-	                <div class='col-md-8'>
-	                  <input type='text'class='form-control' ng-model="filterBy.searchStr" placeholder="Filter" ng-keyup="bc.filterRecord(filterBy)"/>
-	                </div>
-	               
-	              </div>
-	            </div>
-	            <br>
+	          <div class="box-body">	           
 	            <table id="accounts" class="bsTable table table-striped"
 	             data-url="/accounts/ng-account-list"
 	             data-pagination="true"
@@ -38,7 +29,9 @@
 	             js-bootstraptable>
 	            <thead>
 	                <tr>
-	                    <th class="col-md-5" data-field="bank_code" >Bank</th>
+	                    <th class="col-md-2" data-field="bank_code" >Bank</th>
+	                    <th class="col-md-2" data-field="account_code" >Account Code</th>
+	                    <th class="col-md-1" data-field="status" >Status</th>
 	                    <th class="col-md-5"data-field="account_no" >Account #</th>                   
 	                    <th style='width:50px' data-field="action" class="action">Action</th>
 	                </tr>
@@ -70,6 +63,30 @@
       radioClass: 'iradio_flat-green'
     });
   });
+
+  $(document).on('click','.account',function(e){
+  	e.preventDefault();
+  	var id = $(this).data('id');
+  	startLoad();
+  	$.get('accounts/'+id,function(data){
+  		stopLoad();
+  		$("#bank_code").val(data.bank_code);
+  		$("#account_no").val(data.account_no);
+  		if(data.is_active){       
+        $(".icheckbox_flat-green").addClass('checked')
+        $(".icheckbox_flat").attr("aria-checked","true");
+  			$("#is_active").attr('checked','checked');
+  		}else{       
+  			$("#is_active").removeAttr('checked');
+        $(".icheckbox_flat").attr("aria-checked","false");
+        $(".icheckbox_flat-green").removeClass('checked')
+  		}
+  		
+  		$("#notes").val(data.notes);
+  		$("#account_id").val(data.account_id);
+  		$("input[type='submit']").val('Update');  		
+  	})
+  })
 </script>
 
 

@@ -10,6 +10,7 @@
       {        
         console.log(model)
         service.getAvailableCheck(model).then(function (result) {
+            console.log(result);
             var opt="<option>Select</option>";
             for(var i = 0; i < result.data.length; i++){
               opt+="<option value="+result.data[i].check_id+" data-status='"+result.data[i].check_status_id+"'>"+result.data[i].check_no+"</option>";
@@ -45,9 +46,10 @@
         }
         console.log($(".check_no").val());
           
-        model['check_no'] = ($(".check_no").val()=='Select')?'':$(".check_no").val();
+        model['check_no'] = $("[name='check_no']").val();
         model['payee_id'] = ($(".payee_id").val()=='Select')?'':$(".payee_id").val();
-        model['notes'] = $("[name='notes']").val();          
+        model['notes'] = $("[name='notes']").val();
+        console.log(model);          
         service.saveIssuance(model).then(function (result) {
             $scope.message(result.data);
             $(".check_no").val(model['check_no']);//.trigger("change") ; 

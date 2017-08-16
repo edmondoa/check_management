@@ -14,5 +14,9 @@ class Check extends Model
     protected $fillable =['checkbook_id','check_no','check_amount',
     			'notes','check_status_id','created_on','created_user_id'];
 
+    public function issue()
+    {
+    	return $this->has("App\Models\CheckIssuance",'check_id');
+    }				
 
 }

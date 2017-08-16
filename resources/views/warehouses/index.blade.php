@@ -36,7 +36,8 @@
 
   $(document).ready(function(){    
     $("li.check-issuances").addClass("active");
-    $(".date_picker").datepicker({'autoClose':true});
+    var date = new Date('<?php echo date("Y-m-d"); ?>');
+    $(".date_picker").datepicker({startDate:date,todayHighlight:'TRUE','autoClose':true});
   })
   $(function () {   
    	$(".select2").select2();

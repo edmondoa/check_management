@@ -19,8 +19,22 @@ app.factory('payeeService', ['HttpRequestFactory','$q','$timeout',function (Http
         return HttpRequestFactory.request(config);
       }
 
+      function updatePayee(model){
+        console.log(model)
+        var config;
+        config = {
+            method: 'PUT',
+            url: urlBase+'/'+model['payee_id'],
+            data:$.param(model),          
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        };
+        return HttpRequestFactory.request(config);
+      }
+
+
         return {
-        savePayee : savePayee
+        savePayee : savePayee,
+        updatePayee : updatePayee
         };
     }]);
 

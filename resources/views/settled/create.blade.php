@@ -1,11 +1,11 @@
 <div >
     <div class="box">
       	<div class="box-body">
-			<form ng-submit="cc.setSettle(models)">
+			<form ng-submit="sc.setSettle(models)">
 				
 				<div class="form-group">
 			        <label for="account_no">Account No</label>
-			        <select class="form-control select2 account_id" ng-model='models.account_id'  name='account_id'tabindex="1">
+			        <select class="form-control select2 account_id" ng-model='models.account_id'  name='account_id'tabindex="1" ng-change="sc.clear()">
 				      	<option >Select</option>
 				      	@foreach($accounts as $account)
 				      		<option value='{{$account->account_id}}'>{{$account->account_no}}</option>
@@ -16,24 +16,27 @@
 				
 			    <div class="form-group">
 			        <label for="account_no">Check Date</label>
-			        <input type="text" name='clear_date' class="form-control date_picker" ng-model='models.clear_date'tabindex="2"/>
+			        <input type="text" name='clear_date' class="form-control date_picker" ng-model='models.check_date'tabindex="2"/>
 			    </div>	
 			    <div class="form-group">
 			        <label for="account_no">Check No</label>
-			        <input type="text" name='check_no' class="form-control" ng-model='models.check_no'tabindex="3" ng-change="findCheck(models)"/>
+			        <input type="text" class="form-control " id="check_no" ng-model='models.check_no' name='check_no' tabindex="3" ><!--  on-enter="sc.findCheck(models)" -->
+	                  <!-- <a href="#" class='btn btn-sm btn-default input-group-addon  search-prod' ng-click="sc.findCheck(models)"><i class='fa fa-magnify'></i> Search!</a> -->
+	                
 			    </div>
 			    <div class="form-group">
 			        <label for="account_no">Payee</label>
 			        <input type="text" readonly name='payee' class="form-control" />
-			        <input type="hidden" name='payee_id' class="form-control" ng-model='models.payee_id'/>
+			        <input type="hidden"  name='payee_id' class="form-control" />
+			        <input type="hidden"  name='check_id' class="form-control" />
 			    </div>	
 			     <div class="form-group">
 			        <label for="account_no">Check Amount</label>
-			        <input type="text" name='check_amount' class="form-control" readonly ng-model='models.check_amount'/>
+			        <input type="text" name='check_amount' class="form-control" readonly />
 			    </div>
 			     <div class="form-group">
-			        <label for="account_no">Amount</label>
-			        <input type="text" name='clear_amount' class="form-control"  ng-model='models.clear_amount'tabindex="4"/>
+			        <label for="account_no">Clear Amount</label>
+			        <input type="text" name='amount' class="form-control"  ng-model='models.amount'tabindex="4"/>
 			    </div>
 			    			    
 			    <div class='text-center'>

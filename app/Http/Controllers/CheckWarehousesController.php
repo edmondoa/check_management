@@ -74,6 +74,6 @@ class CheckWarehousesController extends Controller
     		}
     		return ['check_no' => $checkno, 'response'=>'Unable to process!', 'class'=>'text-danger'];		
     	}	
-    	return ['check_no' => $checkno, 'response'=>'Check are not in the list!','class'=>'text-danger'];			
+    	return ['check_no' => $checkno, 'response'=>'Check are not New!','class'=>'text-danger'];			
     }
 }

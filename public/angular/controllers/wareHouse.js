@@ -20,8 +20,7 @@
             
             if(result.data.status){
               ctrl.warehouses = result.data.result;
-              console.log(ctrl.warehouses);
-              console.log(result.data); 
+              $("input[type='reset']").trigger('click');
             }else{
               $scope.message(result.data);
             }

@@ -31,15 +31,15 @@ class PayeesController extends Controller
       	$search = @$req->searchStr;
       	$sql =  Payee::whereRaw("payee_name LIKE ('%".$search."%') ");
       	$total = $sql->count();
-      	$list = $sql->skip($start)->take($limit)->get();
+      	$list = $sql->skip($start)->orderBy('payee_name','asc')->take($limit)->get();
        
         $rows = array_map(function($row){
-        $action = "<div class='text-center'><a data-id='".$row['payee_id']."' href='javascript:void(0)' title='Edit Account' class='branch-edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></i></a>";
+        $action = "<div class='text-center'><a data-id='".$row['payee_id']."' href='javascript:void(0)' title='Edit Account' class='payee-edit'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></i></a>";
         $action .= "</div>";
         return [
             'action' => $action,
             'payee_name' =>  $row['payee_name'],
-            'active'  =>  ($row['is_active'])?'Yes':'No',                      
+            'status'   =>  ($row['is_active'])? "<label class='text-success'>Active</label>":"<label class='text-danger'>In-active</label>",                               
             'notes'   =>  $row['notes']
           ];
       },$list->toArray());
@@ -61,6 +61,35 @@ class PayeesController extends Controller
         $payee = Payee::create($inputs);
         if($payee)
         	return Response::json(['status'=>true,'message' => "Successfully created!"]);
+
+        return Response::json(['status'=>false,'message' => "Error occured please report to your administrator!"]);
+    }
+
+    public function show($id)
+    {
+        Core::setConnection();
+        return Payee::find($id);
+    }
+
+    public function update(Request $req,$id)
+    {
+        Core::setConnection();
+        $inputs = $req->all();   
+        $rules = Payee::$rules;
+        $rules['payee_name'] = $rules['payee_name'] . ',' . $id.',payee_id';
+            
+        $validate = Validator::make($inputs, $rules);
+        if($validate->fails())
+        {
+            return Response::json(['status'=>false,'message' => $validate->messages()]);
+        }
+
+        $payee = Payee::find($id);
+        $payee->payee_name = $req->payee_name;        
+        $payee->is_active = $req->is_active;
+        $payee->notes = $req->notes;
+        if($payee->save())
+            return Response::json(['status'=>true,'message' => "Successfully updated!"]);
 
         return Response::json(['status'=>false,'message' => "Error occured please report to your administrator!"]);
     }

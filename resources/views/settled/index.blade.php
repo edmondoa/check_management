@@ -12,7 +12,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content" ng-controller='cancelCtrl as cc'>
+    <section class="content" ng-controller='settledCtrl as sc'>
       	<!-- Account Create -->
       	<div class="col-md-4">
         @include('settled.create')
@@ -28,9 +28,9 @@
 @stop
 @section('html_footer')
 @parent
-<script src="/angular/controllers/cancel.js"></script>
+<script src="/angular/controllers/settle.js"></script>
 <script src="/angular/service/HttpRequestFactory.js"></script>
-<script src="/angular/service/cancelService.js"></script>
+<script src="/angular/service/settleService.js"></script>
 <script src="/plugins/iCheck/icheck.min.js"></script>
 <script src="/plugins/select2/select2.full.min.js"></script>
 <script type="text/javascript">

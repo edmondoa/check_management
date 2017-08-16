@@ -15,10 +15,10 @@ class Account extends Model
     			'notes','created_on','created_user_id'];
 
     public static $rules =[    				
-    				'account_no' => 'required|unique:accounts,account_no',
-    				'bank_code' => 'required']	;
+    				'account_no' => 'required|numeric|unique:accounts,account_no',
+    				'bank_code' => 'required |max:3|min:3']	;
 
-    public function checbooks()
+    public function checkbooks()
     {
     	return $this->hasMany('App\Models\CheckBook','account_id');
     }				
